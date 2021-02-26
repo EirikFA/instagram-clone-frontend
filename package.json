@@ -1,0 +1,71 @@
+{
+  "name": "instagram-clone",
+  "version": "0.0.0",
+  "description": "Instagram clone frontend built using Ionic with React",
+  "main": "src/index.tsx",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EirikFA/instagram-clone.git"
+  },
+  "author": "Eirik Fossestøl Andresen <eirik@arweb.no>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EirikFA/instagram-clone/issues"
+  },
+  "homepage": "https://instagram-clone.arweb.no",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "dependencies": {
+    "@capacitor/core": "2.4.6",
+    "@ionic/react": "^5.5.5",
+    "@ionic/react-router": "^5.5.5",
+    "ionicons": "^5.5.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "web-vitals": "^1.1.0",
+    "workbox-background-sync": "^6.1.1",
+    "workbox-broadcast-update": "^6.1.1",
+    "workbox-cacheable-response": "^6.1.1",
+    "workbox-core": "^6.1.1",
+    "workbox-expiration": "^6.1.1",
+    "workbox-google-analytics": "^6.1.1",
+    "workbox-navigation-preload": "^6.1.1",
+    "workbox-precaching": "^6.1.1",
+    "workbox-range-requests": "^6.1.1",
+    "workbox-routing": "^6.1.1",
+    "workbox-strategies": "^6.1.1",
+    "workbox-streams": "^6.1.1"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "2.4.6",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.5",
+    "@testing-library/user-event": "^12.7.3",
+    "@types/jest": "^26.0.20",
+    "@types/node": "^14.14.31",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.1",
+    "@types/react-router": "^5.1.11",
+    "@types/react-router-dom": "^5.1.7",
+    "react-scripts": "4.0.3",
+    "typescript": "^4.2.2"
+  }
+}

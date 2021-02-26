@@ -1,0 +1,8 @@
+{
+  "name": "Instagram clone",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react",
+  "id": "59dcaf02"
+}
