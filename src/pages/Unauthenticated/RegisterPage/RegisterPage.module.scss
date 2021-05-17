@@ -1,0 +1,106 @@
+@import "../../../assets/style/variables.scss";
+
+.iconContainer {
+  position: relative;
+  margin: 0 auto;
+
+  width: 160px;
+  height: 160px;
+
+  border-radius: 50%;
+  border: 1px solid var(--ion-color-dark);
+
+  ion-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    font-size: 90px;
+    --ionicon-stroke-width: 8px;
+  }
+}
+
+.formRow {
+  flex: 1 0 auto;
+  align-items: center;
+
+  .segment {
+    width: 90%;
+    margin: var(--ion-margin, 16px) auto 0 auto;
+
+    ion-segment-button {
+      --indicator-transition: none;
+
+      &:not(:global(.segment-button-checked))::part(indicator) {
+        opacity: 0.5;
+      }
+    }
+  }
+
+  ion-button {
+    margin: 14px auto 0 auto;
+
+    width: 90%;
+    height: 44px;
+  }
+}
+
+.formItem {
+  margin: 14px auto 0 auto;
+
+  width: 90%;
+  --min-height: 46px;
+
+  border: $border-medium;
+  border-radius: 8px;
+
+  font-size: 14px;
+}
+
+.formItemWithLabel {
+  composes: formItem;
+
+  ion-label {
+    padding-right: var(--padding-start);
+  }
+
+  ion-input {
+    padding-left: var(--padding-start) !important;
+
+    &::before {
+      content: "";
+
+      position: absolute;
+      left: 0;
+
+      height: 75%;
+      width: 1px;
+
+      background: $color-medium-transparent;
+    }
+  }
+}
+
+.footerRow {
+  flex-shrink: 0;
+
+  ion-col {
+    --ion-grid-column-padding: 0;
+  }
+}
+
+.footerItem {
+  // "Counteract" ion-grid's padding
+  margin: 0 calc(#{var(--ion-grid-padding, 5px)} * -1);
+
+  --background: none;
+  border-top: $border-medium;
+
+  text-align: center;
+
+  a {
+    text-decoration: none;
+    color: var(--ion-color-dark);
+  }
+}

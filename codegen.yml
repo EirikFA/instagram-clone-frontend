@@ -1,0 +1,13 @@
+overwrite: true
+schema: ${REACT_APP_BACKEND_URL}
+documents: "src/api/**/*.graphql.ts"
+generates:
+  src/generated/graphql.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+
+  src/generated/fragmentMatcher.ts:
+    plugins:
+      - "fragment-matcher"

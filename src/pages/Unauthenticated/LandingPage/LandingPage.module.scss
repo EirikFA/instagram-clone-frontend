@@ -1,0 +1,16 @@
+.pickerIcon {
+  vertical-align: middle;
+
+  cursor: pointer;
+}
+
+.contentRow {
+  flex-grow: 1;
+  align-content: center;
+
+  text-align: center;
+
+  .loginButton {
+    color: var(--ion-color-secondary);
+  }
+}

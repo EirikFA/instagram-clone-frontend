@@ -1,22 +1,36 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
-import './Tab1.css';
+import { gql, useQuery } from "@apollo/client";
+import {
+  IonContent, IonHeader, IonPage, IonText, IonTitle, IonToolbar
+} from "@ionic/react";
+import { FC } from "react";
 
-const Tab1: React.FC = () => {
+import "./Tab1.css";
+
+const Tab1: FC = () => {
+  const { loading, error, data } = useQuery(gql`
+    query GetPosts {
+      posts {
+        id
+        text
+        author {
+          username
+          email
+        }
+      }
+    }
+  `);
+
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Tab 1</IonTitle>
+          {error && <IonTitle>Error</IonTitle>}
+          {loading && <IonTitle>Loading..</IonTitle>}
+          {data && <IonTitle>Posts</IonTitle>}
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Tab 1</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer name="Tab 1 page" />
+      <IonContent>
+        {data && data.posts.map(({ text }: any) => <IonText>{text}</IonText>)}
       </IonContent>
     </IonPage>
   );
