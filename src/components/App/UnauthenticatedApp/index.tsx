@@ -1,8 +1,10 @@
-import { IonReactRouter } from "@ionic/react-router";
 import { IonRouterOutlet } from "@ionic/react";
-import { LandingPage, LoginPage, RegisterPage } from "@pages";
-import { Redirect, Route } from "react-router";
+import { IonReactRouter } from "@ionic/react-router";
+import {
+  FindAccountPage, LandingPage, LoginPage, RegisterPage, ResetPasswordPage
+} from "@pages";
 import { FC } from "react";
+import { Redirect, Route } from "react-router";
 
 const UnauthenticatedApp: FC = () => (
   <IonReactRouter>
@@ -10,8 +12,10 @@ const UnauthenticatedApp: FC = () => (
       <Route exact path="/" component={LandingPage} />
       <Route path="/login" component={LoginPage} />
       <Route path="/register" component={RegisterPage} />
+      <Route path="/find-account" component={FindAccountPage} />
+      <Route path="/reset-password" component={ResetPasswordPage} />
 
-      <Redirect to="/" />
+      <Route render={() => <Redirect to="/" />} />
     </IonRouterOutlet>
   </IonReactRouter>
 );

@@ -3,3 +3,19 @@
   display: flex;
   flex-direction: column;
 }
+
+.grid-footer-row {
+  ion-col {
+    --ion-grid-column-padding: 0;
+  }
+}
+
+.grid-footer-item {
+  --background: none;
+
+  text-align: center;
+
+  a {
+    text-decoration: none;
+  }
+}

@@ -1,5 +1,5 @@
 overwrite: true
-schema: ${REACT_APP_BACKEND_URL}
+schema: ${GRAPHQL_CODE_GEN_URL}
 documents: "src/api/**/*.graphql.ts"
 generates:
   src/generated/graphql.ts:

@@ -1,0 +1,14 @@
+.header::after {
+  background-image: none;
+}
+
+.toolbar {
+  --background: none;
+  --border-color: transparent;
+}
+
+.footerItem {
+  a {
+    color: var(--ion-color-secondary);
+  }
+}

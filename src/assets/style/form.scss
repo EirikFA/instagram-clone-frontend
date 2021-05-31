@@ -1,0 +1,41 @@
+@import "./variables.scss";
+
+.auth-form-row {
+  flex: 1 0 auto;
+
+  margin: 0 auto;
+
+  width: 90%;
+
+  text-align: center;
+}
+
+.auth-form-row-vcentered {
+  align-items: center;
+}
+
+.auth-form-item {
+  margin: 14px auto 0 auto;
+
+  --min-height: 46px;
+
+  border: $border-medium;
+  border-radius: 8px;
+
+  font-size: 14px;
+}
+
+.auth-alert {
+  --max-width: 270px;
+
+  --background: var(--ion-color-light);
+}
+
+.auth-alert-button {
+  margin: 0 auto !important;
+
+  // Last child is above for some reason ¯\_(ツ)_/¯
+  &:last-child {
+    color: var(--ion-color-secondary);
+  }
+}

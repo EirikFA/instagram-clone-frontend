@@ -4,8 +4,8 @@ import {
   IonLabel, IonPage, IonRow, IonSegment, IonSegmentButton
 } from "@ionic/react";
 import { personOutline } from "ionicons/icons";
-import { Link } from "react-router-dom";
 import { FC, useState } from "react";
+import { Link } from "react-router-dom";
 
 import styles from "./RegisterPage.module.scss";
 
@@ -44,7 +44,6 @@ const RegisterPage: FC = () => {
                       placeholder="Phone number"
                       required
                       type="tel"
-                      className={styles.phoneInput}
                     />
                   </IonItem>
                 )}

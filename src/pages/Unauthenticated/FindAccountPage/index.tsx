@@ -1,47 +1,49 @@
-import { loginArgsSchema } from "@api/auth/validation";
+import { requestPasswordResetSchema } from "@api/auth/validation";
 import TextInput from "@components/Form/Input/TextInput";
-import { useLoginMutation } from "@generated/graphql";
+import { useRequestPasswordResetMutation } from "@generated/graphql";
 import {
   IonAlert,
-  IonButton, IonCol, IonContent, IonGrid, IonIcon,
-  IonItem, IonLabel, IonPage, IonRow, IonSpinner, IonText, IonTitle
+  IonButton,
+  IonCol,
+  IonContent,
+  IonGrid,
+  IonHeader,
+  IonIcon, IonItem, IonLabel, IonPage, IonRow, IonSpinner, IonText, IonTitle, IonToolbar
 } from "@ionic/react";
 import { Form, Formik } from "formik";
-import { chevronDownOutline, logoFacebook } from "ionicons/icons";
-import { Link, useHistory } from "react-router-dom";
+import { logoFacebook } from "ionicons/icons";
+import { FC } from "react";
+import { Link } from "react-router-dom";
 
-import styles from "./LoginPage.module.scss";
+import styles from "./FindAccountPage.module.scss";
 
-const LoginPage: React.FC = () => {
-  const [logIn, { error }] = useLoginMutation({ refetchQueries: ["Me"] });
-  const { push } = useHistory();
+const FindAccountPage: FC = () => {
+  const [requestReset, { error, data }] = useRequestPasswordResetMutation();
 
   return (
     <IonPage>
+      <IonHeader className={styles.header}>
+        <IonToolbar className={styles.toolbar}>
+          <IonTitle>Login help</IonTitle>
+        </IonToolbar>
+      </IonHeader>
       <IonContent>
         <IonGrid className="flex-grid-column">
-          <IonRow className="ion-text-center">
+          <IonRow className="auth-form-row">
             <IonCol>
-              <IonText>
-                Language picker&nbsp;
-                <IonIcon icon={chevronDownOutline} className={styles.pickerIcon} />
+              <IonTitle className="ion-margin-vertical">Find your account</IonTitle>
+              <IonText color="medium">
+                Enter the email or phone number linked to your account.
               </IonText>
-            </IonCol>
-          </IonRow>
-
-          <IonRow className="auth-form-row auth-form-row-vcentered">
-            <IonCol>
-              <IonTitle className="ion-margin-bottom">Instagram</IonTitle>
 
               <Formik
                 initialValues={{
-                  identifier: "",
-                  password: ""
+                  email: ""
                 }}
-                validationSchema={loginArgsSchema}
+                validationSchema={requestPasswordResetSchema}
                 onSubmit={async (values, { setSubmitting }) => {
                   try {
-                    await logIn({ variables: values });
+                    await requestReset({ variables: values });
                     setSubmitting(false);
                   } catch (e) {
                     // Error displayed as alert based on `error` from Apollo hook,
@@ -49,25 +51,16 @@ const LoginPage: React.FC = () => {
                   }
                 }}
               >
-                {({ dirty, isValid, isSubmitting }) => (
-                  <Form>
+                {({
+                  dirty, isValid, isSubmitting, values: { email }
+                }) => (
+                  <Form className="ion-margin-top">
                     <IonItem lines="none" color="light" className="auth-form-item">
                       <TextInput
-                        name="identifier"
-                        placeholder="Phone number, email address or username"
+                        name="email"
+                        placeholder="example@example.com"
                         required
                         type="text"
-                        showError={false}
-                      />
-                    </IonItem>
-
-                    <IonItem lines="none" color="light" className="auth-form-item">
-                      <TextInput
-                        name="password"
-                        placeholder="Password"
-                        required
-                        type="password"
-                        clearOnEdit={false}
                         showError={false}
                       />
                     </IonItem>
@@ -81,7 +74,7 @@ const LoginPage: React.FC = () => {
                       disabled={!dirty || !isValid || isSubmitting}
                       className="ion-margin-vertical"
                     >
-                      {isSubmitting ? <IonSpinner /> : "Log In"}
+                      {isSubmitting ? <IonSpinner /> : "Next"}
                     </IonButton>
 
                     <IonAlert
@@ -93,24 +86,25 @@ const LoginPage: React.FC = () => {
                         {
                           text: "Try again",
                           cssClass: "auth-alert-button"
-                        },
+                        }
+                      ]}
+                    />
+
+                    <IonAlert
+                      isOpen={!!data}
+                      header="Email sent"
+                      message={`We sent an email to ${email} with a link to get back into your account (if the account exists).`}
+                      cssClass="auth-alert"
+                      buttons={[
                         {
-                          text: "Forgot password",
-                          cssClass: "auth-alert-button",
-                          handler: () => push("/find-account")
+                          text: "Ok",
+                          cssClass: "auth-alert-button"
                         }
                       ]}
                     />
                   </Form>
                 )}
               </Formik>
-
-              <IonText className={styles.forgotText}>
-                <p>
-                  Forgotten your login details?&nbsp;
-                  <Link to="/find-account" className="bold">Get help with logging in.</Link>
-                </p>
-              </IonText>
 
               <h2 className="ruler ruler-with-text">
                 <span>OR</span>
@@ -128,7 +122,7 @@ const LoginPage: React.FC = () => {
             <IonCol>
               <IonItem lines="none" className={`grid-footer-item ${styles.footerItem}`}>
                 <IonLabel>
-                  Don&#39;t have an account? <Link to="/register" className="bold">Sign up.</Link>
+                  <Link to="/#">Need more help?</Link>
                 </IonLabel>
               </IonItem>
             </IonCol>
@@ -139,4 +133,4 @@ const LoginPage: React.FC = () => {
   );
 };
 
-export default LoginPage;
+export default FindAccountPage;
